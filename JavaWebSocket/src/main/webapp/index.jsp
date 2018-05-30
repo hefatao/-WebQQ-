@@ -11,7 +11,9 @@
 <body>
 
         <div class="text" style="text-align: center">
-            <font size="20" color="red">Welcome</font>
+            <h1 style="font-size: 40px;color:red">
+                 Welcome
+            </h1>
         </div>
         <form class="form-inline" style="text-align: center" >
             <div class="input-group">
@@ -30,6 +32,11 @@
         <hr/>
         <div id="message" class="container"></div>
         <br>
+        <div style="text-align: center">
+            <button type="button" class = "btn btn-default btn-sm" >
+                <span class="glyphicon glypicon-picure"></span>图片
+            </button>
+        </div>
         <div style="text-align: center">
             <input id="text" type="text" size="88"/>
             <button  class = "btn btn-success" onclick="send()">发送</button>

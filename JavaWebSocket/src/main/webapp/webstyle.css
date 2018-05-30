@@ -1,6 +1,7 @@
 .container
 {
     font-family: "Microsoft YaHei";
+    font-size: 14px;
     width: 680px;
     height: 300px;
     overflow: auto;
