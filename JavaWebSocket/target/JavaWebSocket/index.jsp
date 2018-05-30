@@ -32,9 +32,9 @@
         <hr/>
         <div id="message" class="container"></div>
         <br>
-        <div>
-            <button type="button" class = "btn btn-default btn-sm">
-                <span class="glyphicon glypicon-picure"></span>图片
+        <div style="text-align: center">
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-picture"></span> 图片
             </button>
         </div>
         <div style="text-align: center">
@@ -109,9 +109,15 @@
     function send() {
         var message = document.getElementById('text').value;
         var user = document.getElementById('sockname').value;
-        websocket.send( "<span style='color: blue;font-size:12px '>" + user + "</span>" );
-        websocket.send("\n"+"&nbsp;&nbsp;"+message);
+        websocket.send( "<span style='color: blue;font-size:12px '>" + user + "</span>" +"<br>"+"&nbsp;&nbsp;"+message);
         document.getElementById("text").value = "";
+    }
+    function GetGTime() {
+        var date = new Date();
+        date.getHours();
+        date.getMinutes();
+        date.getSeconds();
+
     }
 </script>
 </html>

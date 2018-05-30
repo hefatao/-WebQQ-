@@ -1,6 +1,8 @@
 package me.gacl.websocket;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.websocket.*;
@@ -86,7 +88,10 @@ public class WebSocketTest {
 	 * @throws IOException
 	 */
 	public void sendMessage(String message) throws IOException{
-		this.session.getBasicRemote().sendText(message);
+		SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");//设置日期格式
+		String tme = df.format(new Date());// new Date()为获取当前系统时间
+
+		this.session.getBasicRemote().sendText("<span style='color: blue;font-size:12px '> "+ tme +"</span> "+"   "+ message);
 		//this.session.getAsyncRemote().sendText(message);
 	}
 
