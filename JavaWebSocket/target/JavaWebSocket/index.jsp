@@ -32,11 +32,19 @@
         <hr/>
         <div id="message" class="container"></div>
         <br>
-        <div style="text-align: center">
-            <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-picture"></span> 图片
-            </button>
+        <%--<div style="text-align: center">--%>
+
+            <%--<button type="file" class="btn btn-default btn-sm">--%>
+                <%--<span class="glyphicon glyphicon-picture"></span> 图片--%>
+            <%--</button>--%>
+
+        <%--</div>--%>
+        <div align="center" >
+            <button  type="file">上传</button>
+            <input type="file" id="file" style="text-align: center" >
+
         </div>
+
         <div style="text-align: center">
             <input id="text" type="text" size="88"/>
             <button  class = "btn btn-success" onclick="send()">发送</button>
@@ -111,13 +119,6 @@
         var user = document.getElementById('sockname').value;
         websocket.send( "<span style='color: blue;font-size:12px '>" + user + "</span>" +"<br>"+"&nbsp;&nbsp;"+message);
         document.getElementById("text").value = "";
-    }
-    function GetGTime() {
-        var date = new Date();
-        date.getHours();
-        date.getMinutes();
-        date.getSeconds();
-
     }
 </script>
 </html>
