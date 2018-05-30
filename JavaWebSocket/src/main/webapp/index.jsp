@@ -19,6 +19,10 @@
                 <input type="text" class="form-control" size="10" id = "sockname">
             </div>
         </form>
+        <br/>
+        <div style="text-align: center">
+            <button  class = "btn btn-success" onclick="openSocket()">确定并开启连接</button>
+        </div>
         <hr/>
         <div style="text-align: center">
             <button class = "btn btn-warning" onclick="closeWebSocket() " >关闭WebSocket连接</button>
@@ -36,27 +40,42 @@
 <script type="text/javascript">
     var websocket = null;
     //判断当前浏览器是否支持WebSocket
-    if ('WebSocket' in window) {
-        websocket = new WebSocket("ws://localhost:8080/websocket");
-    }
-    else {
-        alert('当前浏览器 Not support websocket')
+    function openSocket() {
+        try{
+            if ('WebSocket' in window) {
+                websocket = new WebSocket("ws://localhost:8080/websocket");
+            }
+
+            else {
+                alert('当前浏览器 Not support websocket');
+            }
+
+        }catch (e) {
+            return;
+        }
+        //连接成功建立的回调方法
+        websocket.onopen = function () {
+            var item;
+                item="欢迎 "+document.getElementById('sockname').value + "，"+ " WebSocket 连接成功。";
+                setMessageInnerHTML(item,"ok");
+        }
+        //连接发生错误的回调方法
+        websocket.onerror = function () {
+
+            setMessageInnerHTML("WebSocket连接发生错误+","error");
+        };
+
+
+
+        //接收到消息的回调方法
+        websocket.onmessage = function (event) {
+            setMessageInnerHTML(event.data);
+        }
+
+
     }
 
-    //连接发生错误的回调方法
-    websocket.onerror = function () {
-        setMessageInnerHTML("WebSocket连接发生错误","error");
-    };
 
-    //连接成功建立的回调方法
-    websocket.onopen = function () {
-        setMessageInnerHTML("WebSocket连接成功","ok");
-    }
-
-    //接收到消息的回调方法
-    websocket.onmessage = function (event) {
-        setMessageInnerHTML(event.data);
-    }
 
     //连接关闭的回调方法
     websocket.onclose = function () {
