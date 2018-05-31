@@ -1,5 +1,7 @@
 package me.gacl.websocket;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -82,7 +84,8 @@ public class WebSocketTest {
 		error.printStackTrace();
 	}
 
-	/**
+
+    /**
 	 * 这个方法与上面几个方法不一样。没有用注解，是根据自己需要添加的方法。
 	 * @param message
 	 * @throws IOException
