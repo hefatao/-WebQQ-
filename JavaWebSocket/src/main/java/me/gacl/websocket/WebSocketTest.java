@@ -30,11 +30,14 @@ public class WebSocketTest {
 	 * @param session  可选的参数。session为与某个客户端的连接会话，需要通过它来给客户端发送数据
 	 */
 	@OnOpen
-	public void onOpen(Session session){
+	public  void onOpen( Session session){
+
+
 		try{
 			this.session = session;
 			webSocketSet.add(this);     //加入set中
 			addOnlineCount();           //在线数加1
+
 			System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
 		}catch(Exception e)
 		{

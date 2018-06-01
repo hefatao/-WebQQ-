@@ -7,6 +7,23 @@
 <head>
     <title>仿WebQQ聊天</title>
     <link rel="stylesheet" type="text/css" href="webstyle.css">
+    <style>
+        .ui_button {
+            display: inline-block;
+            line-height: 20px;
+            padding: 0 10px;
+            color: #FFFFFF;
+            font-family: "微软雅黑";
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .ui_button_primary {
+            background-color: #FF6600;
+        }
+        label.ui_button:hover {
+            background-color: #d46216;
+        }
+    </style>
 </head>
 <body>
     <div class="text" style="text-align: center">
@@ -22,24 +39,20 @@
     </form>
     <br/>
     <div style="text-align: center">
-        <button  class = "btn btn-success" onclick="openSocket()">确定并开启连接</button>
+        <button  class = "btn btn-success" onclick="check()">确定并开启连接</button>
     </div>
     <hr/>
     <div style="text-align: center">
         <button class = "btn btn-warning" onclick="closeWebSocket() " >关闭WebSocket连接</button>
     </div>
+
     <hr/>
     <div id="message" class="container"></div>
     <br>
-    <%--<div style="text-align: center">--%>
 
-    <%--<button type="file" class="btn btn-default btn-sm">--%>
-    <%--<span class="glyphicon glyphicon-picture"></span> 图片--%>
-    <%--</button>--%>
-
-    <%--</div>--%>
     <div align="center" >
-        <input type="file" id="file" style="text-align: center" >
+        <label class="ui_button ui_button_primary" for="xFile">图片</label>
+        <form><input type="file" id="xFile" style="position:absolute;clip:rect(0 0 0 0);"/></form>
     </div>
 
     <div style="text-align: center">
@@ -70,7 +83,7 @@
             setMessageInnerHTML(item,"ok");
         }
 
-//连接发生错误的回调方法
+        //连接发生错误的回调方法
         websocket.onerror = function () {
 
             setMessageInnerHTML("WebSocket连接发生错误+","error");
@@ -78,7 +91,9 @@
 
         //接收到消息的回调方法
         websocket.onmessage = function (event) {
+
             setMessageInnerHTML(event.data);
+
         }
 
         //连接关闭的回调方法
@@ -109,9 +124,21 @@
     function send() {
         var message = document.getElementById('text').value;
         var user = document.getElementById('sockname').value;
-
-        websocket.send( "<span style='color: blue;font-size:12px '>" + user + "</span>" +"<br>"+"&nbsp;&nbsp;"+message);
+        if(user!==""&&message!=="")
+        {
+            websocket.send( "<span style='color: blue;font-size:12px '>" + user + "</span>" +"<br>"+"&nbsp;&nbsp;"+message);
+        }
         document.getElementById("text").value = "";
+    }
+    function check() {
+        if (document.getElementById('sockname').value!=="") {
+            openSocket();
+            return true;
+        }
+        else{
+            alert("请输入用户名。");
+            return false;
+        }
     }
 </script>
 </html>
